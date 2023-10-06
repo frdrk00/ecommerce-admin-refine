@@ -1,10 +1,9 @@
 import {
   AuthBindings,
   Authenticated,
-  GitHubBanner,
   Refine,
 } from '@refinedev/core'
-import { DevtoolsPanel, DevtoolsProvider } from '@refinedev/devtools'
+import { DevtoolsProvider } from '@refinedev/devtools'
 import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
 
 import {
@@ -30,7 +29,7 @@ import {
   ProductEdit,
   ProductList,
   ProductShow,
-} from 'pages/product'
+} from 'pages/products'
 import { Login } from 'pages/login'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import { parseJwt } from 'utils/parse-jwt'
@@ -173,11 +172,11 @@ function App() {
                 authProvider={authProvider}
                 resources={[
                   {
-                    name: 'product',
-                    list: '/product',
-                    create: '/product/create',
-                    edit: '/product/edit/:id',
-                    show: '/product/show/:id',
+                    name: 'products',
+                    list: '/products',
+                    create: '/products/create',
+                    edit: '/products/edit/:id',
+                    show: '/products/show/:id',
                     meta: {
                       canDelete: true,
                     },
@@ -208,7 +207,7 @@ function App() {
                       index
                       element={<NavigateToResource resource="product" />}
                     />
-                    <Route path="/product">
+                    <Route path="/products">
                       <Route index element={<ProductList />} />
                       <Route path="create" element={<ProductCreate />} />
                       <Route path="edit/:id" element={<ProductEdit />} />
