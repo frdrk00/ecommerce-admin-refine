@@ -63,7 +63,7 @@ function App() {
             avatar: profileObj.picture,
           })
         )
-        const response = await fetch('http://localhost:5000/api/v1/users', {
+        const response = await fetch('https://refine-restaurant-dashboard.onrender.com/api/v1/users', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -166,7 +166,7 @@ function App() {
           <RefineSnackbarProvider>
             <DevtoolsProvider>
               <Refine
-                dataProvider={dataProvider('http://localhost:5000/api/v1')}
+                dataProvider={dataProvider('https://refine-restaurant-dashboard.onrender.com/api/v1')}
                 notificationProvider={notificationProvider}
                 routerProvider={routerBindings}
                 authProvider={authProvider}
