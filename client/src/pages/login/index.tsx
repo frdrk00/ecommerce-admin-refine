@@ -6,7 +6,7 @@ import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import { ThemedTitleV2 } from '@refinedev/mui'
 
-import { CredentialResponse } from '../interfaces/google'
+import { CredentialResponse } from '../../interfaces/google'
 
 const logWithGoogle = "520166924629-mestrh8m1jqf6iajas8bk33gje2mlj33.apps.googleusercontent.com"
 

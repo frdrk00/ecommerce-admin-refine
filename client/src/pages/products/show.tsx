@@ -12,7 +12,7 @@ import Phone from '@mui/icons-material/Phone'
 import Place from '@mui/icons-material/Place'
 import Star from '@mui/icons-material/Star'
 
-import CustomButton from 'components/CustomButton'
+import { CustomButton } from 'components'
 
 function checkImage(url: any) {
   const img = new Image()

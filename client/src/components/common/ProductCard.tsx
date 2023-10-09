@@ -7,7 +7,7 @@ import CardMedia from '@mui/material/CardMedia'
 import CardContent from '@mui/material/CardContent'
 import Stack from '@mui/material/Stack'
 
-import { ProductCardProps } from '../interfaces/product'
+import { ProductCardProps } from '../../interfaces/product'
 
 const ProductCard = ({
   id,
@@ -48,7 +48,7 @@ const ProductCard = ({
         }}
       >
         <Stack direction="column" gap={1}>
-          <Typography fontSize={16} fontWeight={500}  color="#a0a5cc">
+          <Typography fontSize={16} fontWeight={500} color="#a0a5cc">
             {title}
           </Typography>
           <Stack direction="row" gap={0.5} alignItems="flex-start">
@@ -59,7 +59,13 @@ const ProductCard = ({
                 marginTop: 0.5,
               }}
             />
-            <Typography fontSize={14} display={"flex"} alignItems={"center"} justifyContent={"center"} color="#808191">
+            <Typography
+              fontSize={14}
+              display={'flex'}
+              alignItems={'center'}
+              justifyContent={'center'}
+              color="#808191"
+            >
               {location}
             </Typography>
           </Stack>

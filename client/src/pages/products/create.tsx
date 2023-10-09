@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useForm } from '@refinedev/react-hook-form'
 import { useGetIdentity } from '@refinedev/core'
 import { FieldValues } from 'react-hook-form'
-import Form from 'components/Form'
+import {Form} from 'components'
 
 export const ProductCreate = () => {
   const { data: user } = useGetIdentity<{
@@ -37,7 +37,6 @@ export const ProductCreate = () => {
       ...data,
       photo: productImage.url,
       email: user?.email,
-      
     })
   }
 

@@ -1,8 +1,4 @@
-import {
-  AuthBindings,
-  Authenticated,
-  Refine,
-} from '@refinedev/core'
+import { AuthBindings, Authenticated, Refine } from '@refinedev/core'
 import { DevtoolsProvider } from '@refinedev/devtools'
 import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
 
@@ -33,8 +29,13 @@ import {
 import { Login } from 'pages/login'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import { parseJwt } from 'utils/parse-jwt'
-import { Header } from './components/header'
+import { Header, Title } from './components'
 import { ColorModeContextProvider } from './contexts/color-mode'
+import ListIcon from '@mui/icons-material/List';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import CategoryIcon from '@mui/icons-material/Category';
+import { DashboardPage } from 'pages/dashboard'
+import { CategoryCreate, CategoryList } from 'pages/categories'
 
 const axiosInstance = axios.create()
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
@@ -63,7 +64,7 @@ function App() {
             avatar: profileObj.picture,
           })
         )
-        const response = await fetch('https://refine-restaurant-dashboard.onrender.com/api/v1/users', {
+        const response = await fetch('http://localhost:5000/api/v1/users', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -166,11 +167,19 @@ function App() {
           <RefineSnackbarProvider>
             <DevtoolsProvider>
               <Refine
-                dataProvider={dataProvider('https://refine-restaurant-dashboard.onrender.com/api/v1')}
+                dataProvider={dataProvider('http://localhost:5000/api/v1')}
                 notificationProvider={notificationProvider}
                 routerProvider={routerBindings}
                 authProvider={authProvider}
                 resources={[
+                  {
+                    name: "dashboard",
+                    list: "/",
+                    meta: {
+                        label: "Dashboard",
+                        icon: <DashboardIcon />,
+                    },
+                },
                   {
                     name: 'products',
                     list: '/products',
@@ -179,6 +188,15 @@ function App() {
                     show: '/products/show/:id',
                     meta: {
                       canDelete: true,
+                      icon: <ListIcon />,
+                    },
+                  },
+                  {
+                    name: 'categories',
+                    list: '/categories',
+                    meta: {
+                      canDelete: true,
+                      icon: <CategoryIcon />,
                     },
                   },
                 ]}
@@ -197,6 +215,7 @@ function App() {
                       >
                         <ThemedLayoutV2
                           Header={() => <Header isSticky={true} />}
+                          Title={Title}
                         >
                           <Outlet />
                         </ThemedLayoutV2>
@@ -205,13 +224,19 @@ function App() {
                   >
                     <Route
                       index
-                      element={<NavigateToResource resource="product" />}
+                      element={<DashboardPage />}
                     />
                     <Route path="/products">
                       <Route index element={<ProductList />} />
                       <Route path="create" element={<ProductCreate />} />
                       <Route path="edit/:id" element={<ProductEdit />} />
                       <Route path="show/:id" element={<ProductShow />} />
+                    </Route>
+
+                    <Route path="/categories">
+                      <Route index element={<CategoryList />} />
+                      <Route path="create" element={<CategoryCreate />} />
+    
                     </Route>
 
                     <Route path="*" element={<ErrorComponent />} />

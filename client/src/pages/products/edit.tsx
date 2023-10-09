@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useGetIdentity } from '@refinedev/core'
 import { useForm } from '@refinedev/react-hook-form'
 import { FieldValues } from 'react-hook-form'
-import Form from 'components/Form'
+import { Form } from 'components'
 
 export const ProductEdit = () => {
   const { data: user } = useGetIdentity<{

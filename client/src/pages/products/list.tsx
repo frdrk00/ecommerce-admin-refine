@@ -9,8 +9,7 @@ import MenuItem from '@mui/material/MenuItem'
 import { useNavigate } from 'react-router-dom'
 import { useMemo } from 'react'
 
-import ProductCard from 'components/ProductCard'
-import CustomButton from 'components/CustomButton'
+import { ProductCard, CustomButton } from 'components'
 
 export const ProductList = () => {
   const navigate = useNavigate()
